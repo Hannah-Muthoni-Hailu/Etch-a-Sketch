@@ -31,6 +31,7 @@
     function setup () {
         const parent = document.querySelector(".container");
         parent.innerHTML = '';
+        let set = [];
         for (var i = 0; i < num; i++) {
             const parentDiv = document.createElement("div");
             parentDiv.style.display = "flex";
@@ -42,9 +43,12 @@
                 let w = 960 / num;
                 div.style.width = `${w}px`;
                 div.addEventListener("mouseover", () => {
-                    let c = [Math.floor(Math.random() * 255), Math.floor(Math.random() * 255), Math.floor(Math.random() * 255)];
-                    console.log(c);
-                    div.style.backgroundColor = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+                    if (!div.style.opacity) {
+                        div.style.opacity = 1;
+                        div.style.backgroundColor = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+                    } else {
+                        div.style.opacity = div.style.opacity  * (90/100);
+                    }
                 });
                 parentDiv.appendChild(div);
             }
